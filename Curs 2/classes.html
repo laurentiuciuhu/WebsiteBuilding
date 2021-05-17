@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        class Om {
+            constructor(name){
+                this.name = name;
+            }
+        }
+
+        class Animal {
+            //constructorul este folosit pentru atribute - este o METODA SPECIALA
+            constructor(age) {
+                this.age = age;
+            }
+            cry(){
+            console.log("Nici un sunet");
+            }
+        }
+
+        class Dog extends Animal {
+            cry() {
+                console.log("Ham");
+            }
+        }
+        //class - este un SABLON
+        class Cat extends Animal {
+
+            // atribut
+            //var age = 2;
+
+            constructor(age, owner) {
+                //se face referinta la clasa parinte de mai devreme prin "super"
+                super(age);
+                //has a relation;
+                this.owner = owner;
+            }
+
+            //metoda
+            cry() {
+                console.log("Miau");
+            }
+        }
+
+        //inheritance
+        class RussianBlueCat extends Cat {
+            //polimorfism - reprezinta o suprascriere a functiei de mai sus
+        cry() {
+            console.log("Miau Miau Miau");
+            }
+        }
+
+        let proprietar = new Om("Andrei");
+        // crearea altui obiect
+        let pisicaTommy = new Cat(2, proprietar);
+        console.log(pisicaTommy.owner.name)
+        // crearea unui obiect
+        let pisicaRino = new RussianBlueCat(2);
+        let dog = new Dog(1);
+        
+
+        class MedicVeterinar extends Om{
+            //polimorfism
+            verificaSunetul (animal) {
+            animal.cry();
+            }
+        }
+        
+        let veterinar = new MedicVeterinar()
+        
+
+        veterinar.verificaSunetul(pisicaRino);
+        veterinar.verificaSunetul(dog);
+
+
+        //chem o functie din clasa
+        pisicaRino.cry();
+        pisicaTommy.cry();
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
