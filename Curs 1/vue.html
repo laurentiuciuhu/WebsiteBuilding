@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+
+    <div class="vue-app">
+        <div>{{ hello + ' ' + message   }}</div>
+        <input  v-model="message">
+       
+        <div  v-if="seen"> Now  you  see  me</div>
+        <div v-else-if>Now  you  don't </div>
+        
+        <ol>
+            <li  v-for="todo  in  todos">
+            {{  todo  }}
+            </li>
+         </ol>
+         
+         <button @click='seen = !seen'> {{ seen ? 'Hide me!' : 'Show me!' }} </button>
+
+         <input  v-model="new_todo"> 
+        <button @click='append(new_todo)'> Add new item in list</button>
+       
+        <p>{{  message  }}</p>
+        <button  v-on:click="reverseMessage">
+           Reverse  Message
+        </button>
+
+
+
+        
+    </div>
+    
+   
+    <script>
+        var app = new Vue({
+            el: '.vue-app',
+            data: {
+                hello: 'Hello Vue',
+                message: '',
+                seen: true,
+                todos: [
+                   'Learn JavaScript' ,
+                    'Learn Vue' ,
+                    'Build something awesome' 
+                 ]
+
+            },
+            methods: {
+                reverseMessage: function () {
+                    this.message = this.message.split('').reverse().join('')
+                },
+                append: function (new_item) {
+                    this.todos.push(new_item)
+                }
+            }
+        })
+    </script>
+</body>
+</html>
