@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    < src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></>
+    < >
+      $(document).ready(
+          function(){
+
+            updateRate ()
+            function updateRate (){
+              
+              // Creez un obiect de tip request request
+              var request = new XMLHttpRequest();
+             
+              // setez requestul 
+              request.open("GET", "https://api.coindesk.com/v1/bpi/currentprice.json");
+              
+              // setez actiunea in urma carei primesc raspuns
+              request.onreadystatechange = function(){
+                
+                if (this.readyState == 4) {
+                    //
+                    var rates = JSON.parse(request.response);
+                    // Valoarea parsata
+                    $("#rate").html(rates.bpi.USD.rate); 
+                }
+              }
+              // trimit requestul
+              request.send();
+            }
+
+          }
+      )
+    </>
+  </head>
+  <body>
+    <span id="rate"></span> USD
+    
+  </body>
+</html>
